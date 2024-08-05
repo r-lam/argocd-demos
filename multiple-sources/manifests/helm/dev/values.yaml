@@ -1,15 +1,15 @@
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.27.0"
+  tag: "1.27-bookworm"
 
 resources:
   limits:
-    cpu: 100m
+    cpu: 50m
     memory: 128Mi
   requests:
-    cpu: 100m
+    cpu: 30m
     memory: 128Mi
