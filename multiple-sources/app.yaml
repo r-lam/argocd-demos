@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-multisource
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: multisource-demo
+  sources:
+    - repoURL: https://github.com/r-lam/argocd-demos
+      path: helm-chart
+      targetRevision: HEAD
+      helm:
+        valueFiles:
+          - $values/multiple-sources/manifests/helm/dev/values.yaml
+          - $values/multiple-sources/manifests/helm/project-a.values.yaml
+    - repoURL: 'https://github.com/r-lam/argocd-demos'
+      targetRevision: HEAD
+      ref: values
