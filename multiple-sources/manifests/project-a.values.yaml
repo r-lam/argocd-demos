@@ -1,0 +1,9 @@
+podAnnotations:
+  org.department/team: team-a
+  some-useful-annotations/io: some-useful-value
+podLabels:
+  org.department/team: team-a
+  some-useful-annotations/io: some-useful-value
+
+nodeSelector:
+  org.department/team: team-a
